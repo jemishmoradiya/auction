@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# AuctioNext | Esports Tournament Auction Platform
 
-First, run the development server:
+A high-fidelity, real-time esports tournament auction platform built with Next.js 15. Designed for live broadcasts and intense "War Room" bidding experiences.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Live Auction Suite**: Three distinct interfaces (Host, Bidder, Stream Overlay) synchronized in real-time.
+- **War Room Aesthetic**: Premium dark mode design with glassmorphism and high-density information displays.
+- **Zustand State Engine**: Robust state management with localStorage persistence and automatic cross-tab synchronization.
+- **Stream-Ready Overlay**: Clean 16:9 layout designed for OBS/vMix integration with animated tickers and queue previews.
+- **Fast Bidding**: Team-specific bidding consoles with budget validation and roster tracking.
+- **Host Controls**: Full-featured host screen with keyboard shortcuts for rapid auction management.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: TailwindCSS
+- **Components**: shadcn/ui
+- **Icons**: Lucide React
+- **State Management**: Zustand (with Persist middleware)
+- **Forms/Validation**: React Hook Form + Zod
+- **Notifications**: Sonner
 
-## Learn More
+## 📖 Demo Guide
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Setup
+- Open the application in two or more browser windows.
+- In Window A: Navigate to `/auction/1/host` (Host Perspective).
+- In Window B: Navigate to `/auction/1/bid` (Bidder Perspective).
+- In Window C (Optional): Navigate to `/auction/1/stream` (Stream Overlay).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. The Auction Flow
+1. **Identify**: On the Bidder screen, select a team (e.g., "Team Vitality").
+2. **Setup**: On the Host screen, ensure the queue is ready.
+3. **Control**: Use the Host screen (or keyboard shortcuts) to bring up the first player.
+   - `Space`: Start/Resume Timer
+   - `Enter`: Mark as SOLD
+   - `N`: Next Player
+4. **Bid**: Switch to the Bidder screen. Place bids or pass. Watch the timer auto-extend on every bid!
+5. **Finalize**: Once the timer hits 0 or you decide to end, mark the player as Sold or Unsold on the Host screen.
+6. **Persistence**: Refresh any tab anytime; your auction state is preserved via localStorage.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Resetting
+- Click the "Reset Demo" button on the Host screen (bottom right) to clear all rosters and reset calculations to the initial seed state.
 
-## Deploy on Vercel
+## ⌨️ Host Shortcuts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Key | Action |
+|-----|--------|
+| `Space` | Play / Pause Timer |
+| `S` | Start Bidding |
+| `N` | Next Player (Queue) |
+| `Enter` | Mark Sold |
+| `U` | Mark Unsold |
+| `R` | Reset Timer (15s) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Built with ❤️ by Antigravity
