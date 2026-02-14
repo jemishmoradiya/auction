@@ -240,9 +240,10 @@ export const useAuctionStore = create<AuctionStore>()(
 
 // Cross-tab sync listener
 if (typeof window !== 'undefined') {
-    window.addEventListener('storage', (event) => {
-        if (event.key === 'auction-storage') {
+    const handleStorage = (event: StorageEvent) => {
+        if (event.key === 'auction-storage' && event.newValue) {
             useAuctionStore.persist.rehydrate();
         }
-    });
+    };
+    window.addEventListener('storage', handleStorage);
 }

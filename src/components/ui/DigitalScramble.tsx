@@ -1,45 +1,53 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface DigitalScrambleProps {
     value: number | string;
     className?: string;
 }
 
-export function DigitalScramble({ value, className }: DigitalScrambleProps) {
+export const DigitalScramble = React.memo(({ value, className }: DigitalScrambleProps) => {
     const [display, setDisplay] = useState(value.toString());
     const [isScrambling, setIsScrambling] = useState(false);
+    const frameRef = useRef<number>(0);
+    const startTimeRef = useRef<number>(0);
+    const lastUpdateRef = useRef<number>(0);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
-        let timeout: NodeJS.Timeout;
-
-        setIsScrambling(true);
         const finalValue = value.toString();
         const length = finalValue.length;
+        setIsScrambling(true);
+        startTimeRef.current = performance.now();
+        lastUpdateRef.current = 0;
 
-        // Rapid scramble
-        interval = setInterval(() => {
-            let result = "";
-            for (let i = 0; i < length; i++) {
-                // Use random numbers for numeric values, random chars for strings if needed
-                result += Math.floor(Math.random() * 10).toString();
+        const animate = (now: number) => {
+            const elapsed = now - startTimeRef.current;
+
+            if (elapsed >= 350) {
+                setDisplay(finalValue);
+                setIsScrambling(false);
+                return;
             }
-            setDisplay(result);
-        }, 40);
 
-        // Lock in after 350ms
-        timeout = setTimeout(() => {
-            clearInterval(interval);
-            setDisplay(finalValue);
-            setIsScrambling(false);
-        }, 350);
+            // Update every ~40ms
+            if (now - lastUpdateRef.current >= 40) {
+                let result = "";
+                for (let i = 0; i < length; i++) {
+                    result += Math.floor(Math.random() * 10).toString();
+                }
+                setDisplay(result);
+                lastUpdateRef.current = now;
+            }
+
+            frameRef.current = requestAnimationFrame(animate);
+        };
+
+        frameRef.current = requestAnimationFrame(animate);
 
         return () => {
-            clearInterval(interval);
-            clearTimeout(timeout);
+            if (frameRef.current) cancelAnimationFrame(frameRef.current);
         };
     }, [value]);
 
@@ -55,4 +63,5 @@ export function DigitalScramble({ value, className }: DigitalScrambleProps) {
             {display}
         </motion.span>
     );
-}
+});
+DigitalScramble.displayName = "DigitalScramble";
