@@ -1,6 +1,6 @@
-
 "use client";
 
+import { createClient } from "@/lib/supabase/client";
 import { useAuctionStore } from "@/store/useAuctionStore";
 import {
   Card,
@@ -22,39 +22,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Team } from "@/types";
-
-const TeamCard = React.memo(({ team }: { team: Team }) => (
-  <div key={team.id} className="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all group">
-    <div className="flex justify-between items-start mb-4">
-      <div className="space-y-1">
-        <h4 className="font-bold text-white group-hover:text-[var(--theme-primary)] transition-colors uppercase text-xs tracking-tight truncate max-w-[120px]">
-          {team.name}
-        </h4>
-        <div className="flex gap-1.5 mt-2">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className={`w-3.5 h-1 rounded-full ${i < team.roster.length ? 'bg-[var(--theme-primary)] shadow-[0_0_8px_rgba(0,229,255,0.5)]' : 'bg-white/10'}`} />
-          ))}
-        </div>
-      </div>
-      <div className="text-right">
-        <p className={`text-base font-black tabular-nums transition-colors ${team.budget - team.spent < 2000000 ? 'text-[var(--theme-accent)]' : 'text-[var(--theme-secondary)]'}`}>
-          ₹{(team.budget - team.spent).toLocaleString()}
-        </p>
-        <p className="text-[8px] font-black text-white/20 uppercase tracking-[0.3em]">Available</p>
-      </div>
-    </div>
-    <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-      <div
-        className="h-full bg-gradient-to-r from-[var(--theme-primary)] to-[var(--theme-secondary)] transition-all duration-1000 shadow-[0_0_10px_rgba(0,229,255,0.3)]"
-        style={{ width: `${(team.spent / team.budget) * 100}%` }}
-      />
-    </div>
-  </div>
-));
-TeamCard.displayName = "TeamCard";
+import { TeamCard } from "@/components/dashboard/TeamCard";
 
 export default function DashboardPage() {
+  const supabase = createClient();
   const tournaments = useAuctionStore(state => state.tournaments);
   const activeTournamentId = useAuctionStore(state => state.activeTournamentId);
   const teams = useAuctionStore(state => state.teams);
@@ -118,7 +89,7 @@ export default function DashboardPage() {
       {/* Primary Modules Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
         {/* Module: Bidder Console */}
-        <Link href={`/auction/${activeTournament?.id}/bid`} className="group">
+        <Link href={`/app/auction/${activeTournament?.id}/bid`} className="group">
           <div className="h-full bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-3xl relative overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-[var(--theme-accent)]/50 hover:bg-[var(--theme-accent)]/[0.03]">
             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity">
               <Gavel className="w-20 h-20 text-[var(--theme-accent)]" />
@@ -140,7 +111,7 @@ export default function DashboardPage() {
         </Link>
 
         {/* Module: Host Dashboard */}
-        <Link href={`/auction/${activeTournament?.id}/host`} className="group">
+        <Link href={`/app/auction/${activeTournament?.id}/host`} className="group">
           <div className="h-full bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-3xl relative overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-[var(--theme-primary)]/50 hover:bg-[var(--theme-primary)]/[0.03]">
             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity">
               <Users className="w-20 h-20 text-[var(--theme-primary)]" />
@@ -162,7 +133,7 @@ export default function DashboardPage() {
         </Link>
 
         {/* Module: OBS Overlay */}
-        <Link href={`/auction/${activeTournament?.id}/stream`} className="group">
+        <Link href={`/app/auction/${activeTournament?.id}/stream`} className="group">
           <div className="h-full bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-3xl relative overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-[var(--theme-secondary)]/50 hover:bg-[var(--theme-secondary)]/[0.03]">
             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity">
               <Monitor className="w-20 h-20 text-[var(--theme-secondary)]" />

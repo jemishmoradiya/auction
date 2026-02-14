@@ -12,6 +12,8 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { AuthButton } from "@/components/auth/AuthButton";
+import Link from "next/link";
 
 export function Header() {
     return (
@@ -31,24 +33,7 @@ export function Header() {
                     <Bell className="w-5 h-5 text-muted-foreground" />
                 </Button>
 
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="gap-2 px-2">
-                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                                JD
-                            </div>
-                            <span className="text-sm font-medium">John Doe</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-56">
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Profile</DropdownMenuItem>
-                        <DropdownMenuItem>Settings</DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className="text-destructive">Log out</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <AuthButton />
             </div>
         </header>
     );

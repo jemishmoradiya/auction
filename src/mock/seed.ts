@@ -20,7 +20,7 @@ export const MOCK_PLAYERS: Player[] = Array.from({ length: 30 }, (_, i) => {
         {
             name: "Call of Duty: Mobile",
             ign: `Player${i + 1}`,
-            role: role,
+            roles: [role],
             rank: ['Legendary', 'Grandmaster', 'Master'][Math.floor(Math.random() * 3)],
             stats: [
                 { label: "K/D Ratio", value: (Math.random() * 2 + 0.5).toFixed(2) },
@@ -31,7 +31,7 @@ export const MOCK_PLAYERS: Player[] = Array.from({ length: 30 }, (_, i) => {
         {
             name: "Valorant",
             ign: `V_Player${i + 1}`,
-            role: "Duelist",
+            roles: ["Duelist", "IGL"],
             rank: "Radiant",
             stats: [
                 { label: "ACS", value: Math.floor(Math.random() * 100 + 200) },
@@ -55,6 +55,7 @@ export const MOCK_PLAYERS: Player[] = Array.from({ length: 30 }, (_, i) => {
         achievements: ['https://placehold.co/400x300?text=Achievement'],
         basePrice: [100, 150, 200][Math.floor(Math.random() * 3)],
         image: i === 0 ? "/players/phantom.png" : PLAYER_IMAGES[i % PLAYER_IMAGES.length],
+        verificationStatus: i % 3 === 0 ? 'verified' : i % 5 === 0 ? 'pending' : 'none',
         // New Profile Data
         bio: i === 0 ? "Legendary IGL with a history of tactical dominance in high-pressure tournaments." : `Professional CODM player with over ${Math.floor(Math.random() * 4 + 1)} years of competitive experience. Known for clutch plays and strategic calling.`,
         socials: {
@@ -64,6 +65,10 @@ export const MOCK_PLAYERS: Player[] = Array.from({ length: 30 }, (_, i) => {
             discord: "user#1234"
         },
         games: games,
+        videos: [
+            { title: "Best Snipes 2024", url: "https://youtube.com/watch?v=123", category: "Highlight" },
+            { title: "My 2024 Setup Tour", url: "https://youtube.com/watch?v=456", category: "Setup" }
+        ],
         setup: {
             mouse: "Logitech G Pro X Superlight",
             keyboard: "Wooting 60HE",

@@ -13,13 +13,14 @@ export interface Player {
   ign: string;
   name: string;
   role: PlayerRole;
+  platformRole?: 'admin' | 'user';
   stats: PlayerStats;
   previousTeam?: string;
   achievements: string[]; // URLs to screenshots/images
   basePrice: number;
   image?: string; // New: Player photo URL
-  status?: AuctionStatus; // New: Auction status for this player
   price?: number; // New: Final sold price
+  verificationStatus?: 'none' | 'pending' | 'verified';
   // New Profile Fields
   bio?: string;
   socials?: {
@@ -32,9 +33,14 @@ export interface Player {
   games?: {
     name: string;
     ign: string;
-    role: string;
+    roles: string[];
     rank: string;
     stats: { label: string; value: string | number }[];
+  }[];
+  videos?: {
+    title: string;
+    url: string;
+    category: 'Highlight' | 'Setup' | 'VLOG';
   }[];
   setup?: {
     mouse?: string;
@@ -102,4 +108,21 @@ export interface AuctionState {
   unsold: string[]; // Player IDs
   bidHistory: BidEvent[];
   lastUpdate: number;
+}
+
+export interface GameProfile {
+  id: string;
+  profileId: string;
+  gameName: string;
+  ign: string;
+  uid?: string;
+  rank?: string;
+  role?: string;
+  stats: Record<string, string | number>;
+  playstyle: string[];
+  playingSince?: string;
+}
+
+export interface UserProfile extends Player {
+  gameProfiles: GameProfile[];
 }

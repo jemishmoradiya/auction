@@ -28,7 +28,9 @@ import {
     Youtube,
     Gamepad2,
     Share2,
-    Edit3
+    Edit3,
+    CheckCircle2,
+    Video
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -56,7 +58,7 @@ export default function PlayerDetailPage() {
     const activeGame = player.games?.[activeGameIndex] || {
         name: "Main Title",
         ign: player.ign,
-        role: player.role,
+        roles: [player.role],
         rank: player.stats.rank,
         stats: [
             { label: "K/D", value: player.stats.kd },
@@ -142,10 +144,17 @@ export default function PlayerDetailPage() {
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: 0.2 }}
                                         >
-                                            <Badge className="mb-3 bg-primary/90 hover:bg-primary text-primary-foreground border-none text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 font-heading shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-                                                {player.role}
-                                            </Badge>
-                                            <h1 className="text-5xl md:text-6xl font-black italic uppercase tracking-tighter text-white drop-shadow-2xl font-heading leading-none">
+                                            <div className="flex items-center gap-3 mb-3">
+                                                <Badge className="bg-primary/90 hover:bg-primary text-primary-foreground border-none text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 font-heading shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                                                    {player.role}
+                                                </Badge>
+                                                {player.verificationStatus === 'verified' && (
+                                                    <Badge className="bg-green-500/90 hover:bg-green-500 text-white border-none text-[9px] font-black uppercase tracking-widest px-2 py-0.5 flex gap-1 items-center">
+                                                        <CheckCircle2 className="w-3 h-3" /> Verified
+                                                    </Badge>
+                                                )}
+                                            </div>
+                                            <h1 className="text-5xl md:text-6xl font-black italic uppercase tracking-tighter text-white drop-shadow-2xl font-heading leading-none flex items-center gap-4">
                                                 {player.ign}
                                             </h1>
                                             <p className="text-white/40 font-bold text-sm tracking-widest mt-2 font-mono uppercase">
@@ -269,7 +278,9 @@ export default function PlayerDetailPage() {
                                         </div>
                                         <div className="text-left relative z-10">
                                             <p className="text-xs font-black uppercase leading-none font-heading tracking-wider">{game.name}</p>
-                                            <p className="text-[10px] font-bold opacity-60 mt-1.5 font-mono text-primary/80 uppercase tracking-tighter">{game.rank}</p>
+                                            <p className="text-[10px] font-bold opacity-60 mt-1.5 font-mono text-primary/80 uppercase tracking-tighter">
+                                                {game.rank} • {game.roles.join(' / ')}
+                                            </p>
                                         </div>
                                     </button>
                                 ))}
@@ -408,6 +419,58 @@ export default function PlayerDetailPage() {
 
                     </div>
                 </div>
+
+                {/* Video Gallery */}
+                {player.videos && player.videos.length > 0 && (
+                    <div className="space-y-6">
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-xl font-black uppercase italic tracking-tighter flex items-center gap-3 text-white font-heading">
+                                <Video className="w-6 h-6 text-primary" />
+                                Highlight Gallery
+                            </h3>
+                            <Badge variant="outline" className="border-white/10 text-white/40 uppercase text-[9px] tracking-widest px-3">
+                                {player.videos.length} VIDEOS LOADED
+                            </Badge>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {player.videos.map((video, i) => (
+                                <motion.div
+                                    key={i}
+                                    whileHover={{ y: -5 }}
+                                    className="group relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-black/40 hover:border-primary/30 transition-all shadow-2xl"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+                                    {/* Mock Video Thumbnail */}
+                                    <div className="absolute inset-0 bg-slate-900 flex items-center justify-center">
+                                        <div className="text-center">
+                                            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                                <Video className="w-8 h-8 text-primary" />
+                                            </div>
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-white/20">Click to Play Broadcast</p>
+                                        </div>
+                                    </div>
+                                    <div className="absolute bottom-6 left-6 right-6 z-20">
+                                        <Badge className="mb-2 bg-primary/20 text-primary border-primary/30 backdrop-blur-sm text-[8px] font-black uppercase tracking-widest">
+                                            {video.category}
+                                        </Badge>
+                                        <h4 className="text-lg font-black italic uppercase tracking-tighter text-white group-hover:text-primary transition-colors leading-tight">
+                                            {video.title}
+                                        </h4>
+                                        <p className="text-white/40 text-[10px] font-bold mt-1 font-mono uppercase tracking-widest flex items-center gap-2">
+                                            <span className="w-1 h-1 rounded-full bg-primary" />
+                                            YOUTUBE.COM/WATCH?V=...
+                                        </p>
+                                    </div>
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-30">
+                                        <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center translate-y-4 group-hover:translate-y-0 transition-transform shadow-2xl">
+                                            <ExternalLink className="w-6 h-6" />
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 {/* Achievements Gallery */}
                 <div>

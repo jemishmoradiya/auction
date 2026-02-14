@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Share2, Download, Copy, Check } from "lucide-react";
 import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { CheckCircle2 } from "lucide-react";
 
 interface GamingCardProps {
     player: any;
@@ -83,9 +84,16 @@ export function GamingCard({ player, game, trigger }: GamingCardProps) {
                         <div className="absolute inset-0 p-6 flex flex-col justify-between">
                             {/* Header */}
                             <div className="flex justify-between items-start">
-                                <Badge className="bg-white/10 backdrop-blur-md border-white/20 text-white uppercase tracking-widest font-bold font-heading">
-                                    {game.name}
-                                </Badge>
+                                <div className="flex items-center gap-2">
+                                    <Badge className="bg-white/10 backdrop-blur-md border-white/20 text-white uppercase tracking-widest font-bold font-heading">
+                                        {game.name}
+                                    </Badge>
+                                    {player.verificationStatus === 'verified' && (
+                                        <Badge className="bg-green-500/80 backdrop-blur-md border-none text-white px-1.5 py-0.5">
+                                            <CheckCircle2 className="w-3 h-3" />
+                                        </Badge>
+                                    )}
+                                </div>
                                 <div className="text-right">
                                     <p className="text-[10px] font-bold uppercase text-white/60 font-heading">Rank</p>
                                     <p className="text-xl font-black uppercase italic tracking-tighter text-white drop-shadow-lg font-heading">
@@ -108,7 +116,7 @@ export function GamingCard({ player, game, trigger }: GamingCardProps) {
                                         {game.ign}
                                     </h2>
                                     <p className="text-sm font-bold uppercase tracking-widest text-primary font-mono">
-                                        {game.role}
+                                        {game.roles.join(' / ')}
                                     </p>
                                 </div>
 

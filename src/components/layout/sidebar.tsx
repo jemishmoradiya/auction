@@ -11,14 +11,16 @@ import {
     Settings,
     Gavel,
     Play,
-    Monitor
+    Monitor,
+    User as UserIcon
 } from "lucide-react";
 
 const navItems = [
-    { name: "Dashboard", href: "/", icon: LayoutDashboard },
-    { name: "Players", href: "/players", icon: Users },
-    { name: "Tournaments", href: "/tournaments", icon: Trophy },
-    { name: "Live Dashboard", href: "/auction/tourney1/dashboard", icon: Monitor }, // Updated to new dashboard
+    { name: "Dashboard", href: "/app", icon: LayoutDashboard },
+    { name: "My Profile", href: "/app/profile", icon: UserIcon },
+    { name: "Players", href: "/app/players", icon: Users },
+    { name: "Tournaments", href: "/app/tournaments", icon: Trophy },
+    { name: "Live Dashboard", href: "/app/auction/tourney1/dashboard", icon: Monitor },
 ];
 
 export function Sidebar() {
@@ -61,14 +63,14 @@ export function Sidebar() {
                     Auction Views
                 </h2>
                 <Link
-                    href="/auction/tourney1/bid"
+                    href="/app/auction/tourney1/bid"
                     className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 >
                     <Gavel className="w-5 h-5" />
                     <span className="text-sm">Bidder Screen</span>
                 </Link>
                 <Link
-                    href="/auction/tourney1/stream"
+                    href="/app/auction/tourney1/stream"
                     className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 >
                     <LayoutDashboard className="w-5 h-5" />

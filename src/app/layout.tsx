@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} ${rajdhani.variable} ${outfit.variable} antialiased font-sans bg-background text-foreground`}>
-        <ClientLayout>{children}</ClientLayout>
+        {children}
       </body>
     </html>
   );
