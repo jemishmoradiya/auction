@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Rajdhani, Outfit } from "next/font/google";
 import "./globals.css";
-import { ClientLayout } from "@/components/layout/client-layout";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,15 +30,24 @@ export const metadata: Metadata = {
   description: "Live esports tournament auction platform built with Next.js",
 };
 
+import { NextThemeProvider } from "@/components/NextThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} ${rajdhani.variable} ${outfit.variable} antialiased font-sans bg-background text-foreground`}>
-        {children}
+        <NextThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </NextThemeProvider>
       </body>
     </html>
   );

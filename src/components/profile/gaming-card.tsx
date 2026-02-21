@@ -138,7 +138,7 @@ export function GamingCard({ player, game, trigger }: GamingCardProps) {
                     {/* Actions */}
                     <div className="flex gap-2 w-full">
                         <Button
-                            className="flex-1 gap-2 bg-white text-black hover:bg-white/90"
+                            className="flex-1 gap-2 bg-[var(--primary)] text-[#0B0E14] hover:bg-[#00F0FF]/90 font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(0,240,255,0.4)]"
                             onClick={handleDownload}
                         >
                             <Download className="w-4 h-4" /> Download

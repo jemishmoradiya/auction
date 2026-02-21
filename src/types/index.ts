@@ -49,6 +49,9 @@ export interface Player {
     mousepad?: string;
     monitor?: string;
   };
+  privacySettings?: {
+    mode: 'off' | 'ghost' | 'classified';
+  };
 }
 
 export interface Team {
@@ -121,6 +124,7 @@ export interface GameProfile {
   stats: Record<string, string | number>;
   playstyle: string[];
   playingSince?: string;
+  category?: "esports" | "physical" | null;
 }
 
 export interface UserProfile extends Player {

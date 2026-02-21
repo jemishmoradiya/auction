@@ -39,6 +39,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-brand-spike: var(--brand-spike);
+  --color-brand-spike-foreground: var(--brand-spike-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -49,110 +51,99 @@
 }
 
 :root {
-  --radius: 0.5rem;
-  /* Cyberpunk Elite Light Mode (Legacy/Fallback) */
-  --background: oklch(0.985 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.8rem;
+
+  /* NEON CYBERPUNK GLASS */
+  --background: #0B0E14;
+  /* Deep dark blue-black */
+  --foreground: #F8FAFC;
+
+  --card: rgba(255, 255, 255, 0.03);
+  /* Glass base */
+  --card-foreground: #F8FAFC;
+
+  --popover: #0B0E14;
+  --popover-foreground: #F8FAFC;
+
+  --primary: #00F0FF;
+  /* Neon Cyan */
+  --primary-foreground: #0B0E14;
+
+  --secondary: #B026FF;
+  /* Neon Violet */
+  --secondary-foreground: #F8FAFC;
+
+  --muted: #1E293B;
+  /* Slate 800 */
+  --muted-foreground: #94A3B8;
+  /* Slate 400 */
+
+  --accent: rgba(255, 255, 255, 0.05);
+  --accent-foreground: #F8FAFC;
+
+  --destructive: #EF4444;
+  --destructive-foreground: #F8FAFC;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #00F0FF;
+
+  --chart-1: #00F0FF;
+  --chart-2: #B026FF;
+  --chart-3: #2DD4BF;
+  --chart-4: #F87171;
+  --chart-5: #818CF8;
+
+  --sidebar: rgba(11, 14, 20, 0.6);
+  --sidebar-foreground: #F8FAFC;
+  --sidebar-primary: #00F0FF;
+  --sidebar-primary-foreground: #0B0E14;
+  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent-foreground: #F8FAFC;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #00F0FF;
 }
 
 .dark {
-  /* Premium Esports Broadcast Theme */
-
-  /* Background System */
-  --background: #0B1020;
-  /* Deep Navy Base */
-  --foreground: #E7EBFF;
-  /* Off-white text */
-
-  /* Surfaces */
-  --card: #151B32;
-  --card-foreground: #E7EBFF;
-  --popover: #11162A;
-  --popover-foreground: #E7EBFF;
-
-  /* Primary Accent (System/Focus - Electric Blue) */
-  --primary: #4C6FFF;
-  --primary-foreground: #FFFFFF;
-
-  /* Bid/Currency Accent (Money - Warm Gold) */
-  --accent: #F7B500;
-  --accent-foreground: #000000;
-
-  /* Secondary (Muted/Text) */
-  --secondary: #11162A;
-  --secondary-foreground: #9CA6D1;
-
-  /* Muted Elements */
-  --muted: #1B2240;
-  --muted-foreground: #6B739C;
-
-  /* Action/Urgency (Red) */
-  --destructive: #FF4D5E;
+  /* Mirror root for consistent dark mode */
+  --background: #0B0E14;
+  --foreground: #F8FAFC;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-foreground: #F8FAFC;
+  --popover: #0B0E14;
+  --popover-foreground: #F8FAFC;
+  --primary: #00F0FF;
+  --primary-foreground: #0B0E14;
+  --secondary: #B026FF;
+  --secondary-foreground: #F8FAFC;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  --accent: rgba(255, 255, 255, 0.05);
+  --accent-foreground: #F8FAFC;
+  --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #00F0FF;
 
-  /* Borders */
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: rgba(76, 111, 255, 0.35);
-  /* Glow */
-
-  /* Chart Colors (Mapped to semantic roles for now) */
-  --chart-1: #4C6FFF;
-  /* Primary Blue */
-  --chart-2: #F7B500;
-  /* Gold */
+  --chart-1: #00F0FF;
+  --chart-2: #B026FF;
   --chart-3: #2DD4BF;
-  /* Success Teal */
-  --chart-4: #FF4D5E;
-  /* Danger Red */
-  --chart-5: #9CA6D1;
-  /* Muted */
+  --chart-4: #F87171;
+  --chart-5: #818CF8;
 
-  --sidebar: #0B1020;
-  --sidebar-foreground: #E7EBFF;
-  --sidebar-primary: #4C6FFF;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #11162A;
-  --sidebar-accent-foreground: #4C6FFF;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: rgba(76, 111, 255, 0.35);
+  --sidebar: rgba(11, 14, 20, 0.6);
+  --sidebar-foreground: #F8FAFC;
+  --sidebar-primary: #00F0FF;
+  --sidebar-primary-foreground: #0B0E14;
+  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent-foreground: #F8FAFC;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #00F0FF;
 
-  /* Custom Variables for Semantic Roles */
-  --bg-main: #0B1020;
-  --bg-surface: #11162A;
-  --bg-card: #151B32;
-  --accent-bid: #F7B500;
-  --accent-success: #2DD4BF;
-  --glass-overlay: rgba(255, 255, 255, 0.04);
+  --bg-main: #0B0E14;
+  --bg-surface: rgba(255, 255, 255, 0.03);
+  --bg-card: rgba(255, 255, 255, 0.03);
 }
 
 /* --- STREAM OVERLAY THEME ENGINE --- */
@@ -242,6 +233,26 @@
   --theme-glow: 0 0 35px rgba(212, 175, 55, 0.3);
 }
 
+/* THEME 6: Void Amber (Tactical Hardware) */
+.theme-amber {
+  --theme-primary: #FFB000;
+  --theme-secondary: #FF8C00;
+  --theme-accent: #FFFFFF;
+  --theme-bg: #050505;
+  --theme-surface: #0E0E0E;
+  --theme-border: rgba(255, 176, 0, 0.2);
+  --theme-glow: 0 0 20px rgba(255, 176, 0, 0.15);
+}
+
+/* Root Amber Vars for Global Access */
+:root {
+  --amber-primary: #FFB000;
+  --amber-glow: 0 0 15px rgba(255, 176, 0, 0.3);
+  --void-bg: #050505;
+  --void-surface: #0E0E0E;
+  --void-border: rgba(255, 255, 255, 0.05);
+}
+
 /* --- Cyberpunk Animations --- */
 @keyframes glitch {
   0% {
@@ -326,6 +337,28 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes typewriter-cursor {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: var(--primary)
   }
 }
 
@@ -448,6 +481,42 @@
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
   background-size: 100% 4px;
 }
+
+/* Tactical UI Utilities */
+.tactical-grain {
+  position: relative;
+}
+
+.tactical-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* NEUROFALL UTILITIES (Deprecated for Minimalist Pro) */
+/* Kept empty to prevent class missing errors during refactor, will be fully cleaned up later */
+.neuro-glass {}
+
+.neuro-border {}
+
+.neuro-glow-text {}
+
+.neuro-glow-border {}
+
+.neuro-matte {}
+
+.tracking-neuro {}
+
+/* LIQUID GLASS UTILITIES (Deprecated for Minimalist Pro) */
+.liquid-glass {}
+
+.specular-border {}
+
+.bg-liquid-mesh {}
 
 @layer base {
   * {

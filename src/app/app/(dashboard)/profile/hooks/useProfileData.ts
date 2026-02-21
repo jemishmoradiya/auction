@@ -12,6 +12,7 @@ export function useProfileData() {
     const [profile, setProfile] = useState<any>(null);
     const [gameProfiles, setGameProfiles] = useState<GameProfile[]>([]);
     const [isWizardOpen, setIsWizardOpen] = useState(false);
+    const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
     const [selectedGame, setSelectedGame] = useState<GameProfile | null>(null);
 
     // Load profile and game profiles
@@ -48,10 +49,21 @@ export function useProfileData() {
             });
             toast.success("Profile synced successfully");
             setProfile(updatedProfile);
+            setIsProfileEditOpen(false);
         } catch (error: any) {
             toast.error(error.message || "Failed to sync profile");
         }
         setSaving(false);
+    };
+
+    // Handler: Open profile edit
+    const handleEditProfile = () => {
+        setIsProfileEditOpen(true);
+    };
+
+    // Handler: Close profile edit
+    const handleCloseProfileEdit = () => {
+        setIsProfileEditOpen(false);
     };
 
     // Handler: Add/Update game profile
@@ -106,6 +118,7 @@ export function useProfileData() {
         loading,
         saving,
         isWizardOpen,
+        isProfileEditOpen,
         selectedGame,
 
         // Handlers
@@ -116,6 +129,8 @@ export function useProfileData() {
             onEditGame: handleEditGame,
             onAddGame: handleAddGame,
             onCloseWizard: handleCloseWizard,
+            onEditProfile: handleEditProfile,
+            onCloseProfileEdit: handleCloseProfileEdit,
         },
     };
 }

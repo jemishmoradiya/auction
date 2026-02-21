@@ -72,8 +72,8 @@ export function AuthButton() {
                 variant="outline"
                 className="gap-2 border-white/10 bg-white/5 hover:bg-white/10 text-white font-black uppercase tracking-widest text-[10px] px-6"
             >
-                <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center">
-                    <LogIn className="w-2.5 h-2.5 text-black" />
+                <div className="w-4 h-4 rounded-full bg-[var(--primary)] flex items-center justify-center shadow-[0_0_10px_rgba(0,240,255,0.4)]">
+                    <LogIn className="w-2.5 h-2.5 text-[#0B0E14]" />
                 </div>
                 Login
             </Button>
@@ -86,13 +86,13 @@ export function AuthButton() {
                 <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0">
                     <Avatar className="h-10 w-10 border border-white/10">
                         <AvatarImage src={user.user_metadata.avatar_url} />
-                        <AvatarFallback className="bg-primary text-primary-foreground font-black">
+                        <AvatarFallback className="bg-[var(--primary)] text-[#0B0E14] font-black">
                             {user.email?.[0].toUpperCase()}
                         </AvatarFallback>
                     </Avatar>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 bg-[#020617] border-white/10 text-white" align="end" forceMount>
+            <DropdownMenuContent className="w-56 bg-[#0B0E14]/90 backdrop-blur-xl border border-white/10 text-white shadow-2xl rounded-2xl" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal font-heading">
                     <div className="flex flex-col space-y-1">
                         <p className="text-sm font-black leading-none uppercase tracking-tighter">
@@ -104,7 +104,7 @@ export function AuthButton() {
                         {profile?.role && (
                             <div className="pt-2">
                                 <span className={`px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest ${profile.role === 'admin'
-                                    ? 'bg-primary/20 text-primary border border-primary/30'
+                                    ? 'bg-[var(--primary)]/20 text-[var(--primary)] border border-[var(--primary)]/30 shadow-inner'
                                     : 'bg-white/10 text-white/40 border border-white/10'
                                     }`}>
                                     {profile.role}

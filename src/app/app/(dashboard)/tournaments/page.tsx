@@ -20,55 +20,47 @@ export default function TournamentsPage() {
     if (!mounted) return null;
 
     return (
-        <div className="flex-1 space-y-12 p-8 max-w-7xl mx-auto relative overflow-hidden">
-            {/* Background Cinematic Elements */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[var(--theme-primary)]/5 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[var(--theme-secondary)]/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
-            </div>
+        <div className="flex-1 space-y-12 p-4 md:p-8 max-w-7xl mx-auto relative bg-[var(--background)] text-white overflow-hidden font-sans">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-[var(--theme-primary)] font-black uppercase tracking-[0.4em] text-[9px]">
-                        <Zap className="w-3 h-3 fill-current animate-pulse" />
-                        Infrastructure Node
-                    </div>
-                    <h1 className="text-5xl font-black uppercase italic tracking-tighter text-white font-heading leading-none">
-                        Tournament <span className="text-[var(--theme-primary)]">Archive</span>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-white/10 pb-8 relative z-10">
+                <div className="space-y-4">
+                    <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight text-white font-heading leading-none text-shadow-sm">
+                        Tournament<span className="text-[var(--primary)] drop-shadow-[0_0_15px_rgba(0,240,255,0.5)]">Archive</span>
                     </h1>
-                    <p className="text-white/30 font-bold uppercase tracking-widest text-[10px] max-w-md pt-2">
+                    <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-[var(--primary)]/10 border border-[var(--primary)]/30 text-[var(--primary)] text-xs font-bold uppercase tracking-widest rounded-full shadow-[0_0_10px_rgba(0,240,255,0.2)]">
+                        <Zap className="w-4 h-4" />
                         Strategic Orchestration of Competitive Theatres
-                    </p>
+                    </div>
                 </div>
                 <Button
                     onClick={() => setIsCreateModalOpen(true)}
-                    className="bg-[var(--theme-primary)] text-black hover:bg-[var(--theme-primary)]/90 font-black uppercase tracking-widest px-10 h-14 shadow-[0_10px_40px_-10px_rgba(0,229,255,0.4)] gap-3 group rounded-2xl"
+                    className="bg-[var(--primary)] hover:bg-[#00F0FF]/90 text-[#0B0E14] font-black uppercase tracking-wider px-8 md:px-10 h-14 md:h-16 rounded-2xl shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:shadow-[0_0_30px_rgba(0,240,255,0.6)] hover:-translate-y-1 transition-all gap-3 group text-sm"
                 >
-                    <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" />
+                    <Plus className="w-6 h-6 stroke-[3] group-hover:rotate-90 transition-transform duration-500" />
                     New Theatre
                 </Button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
                 {[
-                    { label: "Active Connections", value: tournaments.filter(t => t.status === 'LIVE').length, icon: Target, color: "text-[var(--theme-accent)]" },
-                    { label: "Aggregated Prize Pool", value: `₹${tournaments.reduce((acc, t) => acc + t.prizePool, 0).toLocaleString()}`, icon: Trophy, color: "text-[var(--theme-primary)]" },
-                    { label: "Deployment Capacity", value: tournaments.length, icon: LayoutGrid, color: "text-[var(--theme-secondary)]" },
+                    { label: "Active Connections", value: tournaments.filter(t => t.status === 'LIVE').length, icon: Target, glowColor: "rgba(0,240,255,0.5)", accentClass: "text-[var(--primary)] bg-[var(--primary)]/10 border-[var(--primary)]/30" },
+                    { label: "Aggregated Prize Pool", value: `₹${tournaments.reduce((acc, t) => acc + t.prizePool, 0).toLocaleString()}`, icon: Trophy, glowColor: "rgba(176,38,255,0.5)", accentClass: "text-[var(--secondary)] bg-[var(--secondary)]/10 border-[var(--secondary)]/30" },
+                    { label: "Deployment Capacity", value: tournaments.length, icon: LayoutGrid, glowColor: "rgba(255,255,255,0.3)", accentClass: "text-white bg-white/5 border-white/10" },
                 ].map((stat, i) => (
                     <motion.div
                         key={i}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="bg-white/[0.03] border border-white/10 p-8 rounded-[2rem] hover:border-[var(--theme-primary)]/30 backdrop-blur-3xl transition-all duration-500 group"
+                        className="bg-white/[0.02] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-[0_0_25px_rgba(255,255,255,0.05)] hover:-translate-y-2 hover:bg-white/[0.04] transition-all group flex flex-col justify-between backdrop-blur-xl relative overflow-hidden"
                     >
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className={`p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors ${stat.color}`}>
-                                <stat.icon className="w-6 h-6" />
+                        <div className="flex items-center gap-4 mb-6 pb-6 border-b border-white/10 relative z-10">
+                            <div className={`p-4 rounded-xl border ${stat.accentClass} shadow-[0_0_15px_${stat.glowColor}] group-hover:scale-110 transition-transform duration-500`}>
+                                <stat.icon className="w-8 h-8 drop-shadow-md" />
                             </div>
-                            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30 font-heading">{stat.label}</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-slate-400 flex-1">{stat.label}</span>
                         </div>
-                        <div className="text-4xl font-black text-white font-mono italic tracking-tighter">
+                        <div className="text-4xl md:text-5xl font-black text-white tracking-tighter relative z-10">
                             {stat.value}
                         </div>
                     </motion.div>
@@ -77,7 +69,7 @@ export default function TournamentsPage() {
 
             {/* Grid */}
             <AnimatePresence mode="popLayout">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
                     {tournaments.length > 0 ? (
                         tournaments.map((tournament, i) => (
                             <motion.div
@@ -91,20 +83,20 @@ export default function TournamentsPage() {
                             </motion.div>
                         ))
                     ) : (
-                        <div className="col-span-full py-24 text-center border border-white/5 rounded-[2.5rem] bg-white/[0.01] relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-b from-[var(--theme-primary)]/5 to-transparent opacity-50" />
-                            <div className="relative z-10">
-                                <div className="inline-block p-6 rounded-3xl bg-white/5 mb-6 border border-white/10">
-                                    <Trophy className="w-10 h-10 text-[var(--theme-primary)] opacity-40 animate-pulse" />
+                        <div className="col-span-full py-24 text-center border border-white/10 bg-white/[0.02] rounded-[2rem] shadow-2xl relative overflow-hidden backdrop-blur-xl">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 to-transparent opacity-50" />
+                            <div className="relative z-10 flex flex-col items-center">
+                                <div className="inline-flex p-6 rounded-2xl bg-[var(--primary)]/10 mb-6 border border-[var(--primary)]/30 shadow-[0_0_20px_rgba(0,240,255,0.2)]">
+                                    <Trophy className="w-12 h-12 text-[var(--primary)] drop-shadow-[0_0_10px_rgba(0,240,255,0.8)]" />
                                 </div>
-                                <h3 className="text-3xl font-black uppercase italic tracking-tighter text-white/80 font-heading leading-none">No Active Theatres</h3>
-                                <p className="text-white/20 text-xs font-bold uppercase tracking-widest mt-4">Initialize transmission to begin auction sequence</p>
+                                <h3 className="text-4xl font-black uppercase tracking-tight text-white font-heading leading-none text-shadow-sm">No Active Theatres</h3>
+                                <p className="text-[var(--primary)] bg-[var(--primary)]/10 border border-[var(--primary)]/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mt-6 shadow-[0_0_10px_rgba(0,240,255,0.2)]">Initialize transmission to begin auction sequence</p>
                                 <Button
                                     variant="link"
                                     onClick={() => setIsCreateModalOpen(true)}
-                                    className="text-[var(--theme-primary)] font-black uppercase tracking-[0.4em] text-[10px] mt-8 hover:tracking-[0.6em] transition-all"
+                                    className="text-white hover:text-[var(--primary)] font-bold uppercase tracking-widest text-sm mt-8 pb-1 transition-all h-auto group"
                                 >
-                                    Start Transmission
+                                    <span className="border-b border-white/30 group-hover:border-[var(--primary)] pb-1 transition-colors">Start Transmission</span>
                                 </Button>
                             </div>
                         </div>

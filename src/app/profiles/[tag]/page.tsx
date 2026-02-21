@@ -31,7 +31,7 @@ export default async function PublicProfilePage({
         .eq("profile_id", profile.id);
 
     return (
-        <div className="min-h-screen bg-[#020617] text-white selection:bg-primary/30">
+        <div className="min-h-screen bg-[#0B0E14] text-white selection:bg-[var(--primary)]/30">
             {/* Cinematic Background */}
             <div className="fixed inset-0 pointer-events-none">
                 <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[150px] animate-pulse" />
@@ -50,15 +50,15 @@ export default async function PublicProfilePage({
                                 <CardContent className="p-8 space-y-8">
                                     <div className="flex justify-center">
                                         <div className="relative">
-                                            <div className="w-32 h-32 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 overflow-hidden shadow-2xl">
+                                            <div className="w-32 h-32 rounded-3xl bg-[var(--primary)]/20 flex items-center justify-center border border-[var(--primary)]/30 overflow-hidden shadow-[0_0_20px_rgba(0,240,255,0.2)]">
                                                 {profile.avatar_url ? (
                                                     <img src={profile.avatar_url} alt={profile.name} className="w-full h-full object-cover" />
                                                 ) : (
-                                                    <User className="w-16 h-16 text-primary/40" />
+                                                    <User className="w-16 h-16 text-[var(--primary)]/40" />
                                                 )}
                                             </div>
                                             {profile.role === 'admin' && (
-                                                <div className="absolute -bottom-2 -right-2 bg-primary text-white p-1.5 rounded-xl shadow-xl">
+                                                <div className="absolute -bottom-2 -right-2 bg-[var(--primary)] text-[#0B0E14] p-1.5 rounded-xl shadow-[0_0_15px_rgba(0,240,255,0.4)]">
                                                     <ShieldCheck className="w-5 h-5" />
                                                 </div>
                                             )}
@@ -66,7 +66,7 @@ export default async function PublicProfilePage({
                                     </div>
 
                                     <div className="text-center space-y-2">
-                                        <Badge variant="outline" className="border-primary/20 bg-primary/5 text-primary text-[10px] font-black uppercase tracking-widest px-4 py-1">
+                                        <Badge variant="outline" className="border-[var(--primary)]/30 bg-[var(--primary)]/10 text-[var(--primary)] text-[10px] font-black uppercase tracking-widest px-4 py-1">
                                             Verified Operative
                                         </Badge>
                                         <h1 className="text-4xl font-black uppercase tracking-tighter italic leading-none">
@@ -103,24 +103,24 @@ export default async function PublicProfilePage({
                     <div className="lg:col-span-8 space-y-12">
                         {/* Modules Header */}
                         <div className="space-y-1">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-[9px] font-black uppercase tracking-[0.4em]">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--secondary)]/10 border border-[var(--secondary)]/20 text-[var(--secondary)] text-[9px] font-black uppercase tracking-[0.4em]">
                                 Combat Records
                             </div>
                             <h2 className="text-5xl font-black uppercase tracking-tighter italic">
-                                Active <span className="text-secondary">Modules</span>
+                                Active <span className="text-[var(--secondary)] drop-shadow-[0_0_10px_rgba(176,38,255,0.8)]">Modules</span>
                             </h2>
                         </div>
 
                         {/* Game Profile Cards */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {gameProfiles?.map((gp: GameProfile) => (
-                                <Card key={gp.id} className="group bg-white/[0.02] border-white/10 hover:border-primary/30 transition-all rounded-[2rem] overflow-hidden backdrop-blur-sm">
+                                <Card key={gp.id} className="group bg-white/[0.02] border border-white/10 hover:border-[var(--secondary)]/30 transition-all rounded-[2rem] overflow-hidden backdrop-blur-sm shadow-xl hover:shadow-[0_0_30px_rgba(176,38,255,0.1)]">
                                     <div className="p-8 space-y-6">
                                         <div className="flex items-center justify-between">
-                                            <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center">
-                                                <Gamepad2 className="w-6 h-6 text-white/40" />
+                                            <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5">
+                                                <Gamepad2 className="w-6 h-6 text-[var(--secondary)]/80" />
                                             </div>
-                                            <Badge className="bg-primary text-black font-black italic uppercase text-[10px] rounded-lg">
+                                            <Badge className="bg-[var(--secondary)] text-white font-black italic uppercase text-[10px] rounded-lg shadow-[0_0_10px_rgba(176,38,255,0.4)] border border-[var(--secondary)]/50">
                                                 {gp.rank || 'UNRANKED'}
                                             </Badge>
                                         </div>
@@ -159,13 +159,12 @@ export default async function PublicProfilePage({
                             )}
                         </div>
 
-                        {/* Accolades Section */}
                         <div className="space-y-1 pt-12">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[9px] font-black uppercase tracking-[0.4em]">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20 text-[var(--primary)] text-[9px] font-black uppercase tracking-[0.4em]">
                                 Tactical Accomplishments
                             </div>
                             <h2 className="text-5xl font-black uppercase tracking-tighter italic">
-                                Accolades <span className="text-primary">& Trophies</span>
+                                Accolades <span className="text-[var(--primary)] drop-shadow-[0_0_10px_rgba(0,240,255,0.8)]">& Trophies</span>
                             </h2>
                         </div>
 

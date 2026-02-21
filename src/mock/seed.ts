@@ -75,6 +75,9 @@ export const MOCK_PLAYERS: Player[] = Array.from({ length: 30 }, (_, i) => {
             headset: "HyperX Cloud II",
             mousepad: "Artisan Hayate Otsu",
             monitor: "BenQ ZOWIE XL2546K"
+        },
+        privacySettings: {
+            mode: i === 1 ? 'ghost' : i === 2 ? 'classified' : 'off',
         }
     };
 });

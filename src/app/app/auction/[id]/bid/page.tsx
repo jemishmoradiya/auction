@@ -125,9 +125,9 @@ export default function BidderPage() {
         <div className="min-h-screen bg-[#05070A] text-slate-200 relative overflow-hidden">
             {/* Background Cinematic Elements */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[var(--theme-primary)]/10 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[var(--theme-accent)]/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
-                <div className="absolute top-[20%] right-[10%] w-[20%] h-[20%] bg-[var(--theme-secondary)]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[var(--primary)]/10 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#FF2E63]/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+                <div className="absolute top-[20%] right-[10%] w-[20%] h-[20%] bg-[var(--secondary)]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay" />
             </div>
 
@@ -135,16 +135,16 @@ export default function BidderPage() {
                 {/* Header: Team Identity */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-b border-white/5 pb-10">
                     <div className="flex items-center gap-8">
-                        <div className="w-24 h-24 rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center text-[var(--theme-primary)] relative overflow-hidden backdrop-blur-3xl group">
-                            <div className="absolute inset-0 bg-gradient-to-br from-[var(--theme-primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <Trophy className="w-10 h-10 drop-shadow-[0_0_20px_rgba(0,229,255,0.4)]" />
+                        <div className="w-24 h-24 rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center text-[var(--primary)] relative overflow-hidden backdrop-blur-3xl group">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <Trophy className="w-10 h-10 drop-shadow-[0_0_20px_rgba(0,240,255,0.4)]" />
                         </div>
                         <div className="space-y-1">
                             <h1 className="text-5xl font-black italic uppercase tracking-tighter text-white flex items-center gap-4 leading-none">
                                 {myTeam.name}
                                 {isLeading && (
-                                    <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--theme-secondary)]/10 border border-[var(--theme-secondary)]/20 text-[var(--theme-secondary)] text-[10px] font-black uppercase tracking-[0.4em] animate-pulse">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[var(--theme-secondary)]" />
+                                    <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--secondary)]/10 border border-[var(--secondary)]/20 text-[var(--secondary)] text-[10px] font-black uppercase tracking-[0.4em] animate-pulse">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[var(--secondary)]" />
                                         Leading Offer
                                     </div>
                                 )}
@@ -152,7 +152,7 @@ export default function BidderPage() {
                             <div className="flex items-center gap-6 pt-2">
                                 <div className="flex items-center gap-2">
                                     <span className="text-[9px] font-black text-white/30 uppercase tracking-[0.3em]">Operational Fuel</span>
-                                    <span className="text-xl font-black text-[var(--theme-secondary)] tabular-nums italic tracking-tighter">₹{(myTeam.budget - myTeam.spent).toLocaleString()}</span>
+                                    <span className="text-xl font-black text-[var(--secondary)] tabular-nums italic tracking-tighter">₹{(myTeam.budget - myTeam.spent).toLocaleString()}</span>
                                 </div>
                                 <div className="w-1 h-1 rounded-full bg-white/10" />
                                 <div className="flex items-center gap-2">
@@ -164,7 +164,7 @@ export default function BidderPage() {
                     </div>
 
                     <div className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl">
-                        <div className="w-2 h-2 rounded-full bg-[var(--theme-primary)] animate-pulse" />
+                        <div className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse" />
                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">War Room Node Active</span>
                     </div>
                 </div>
@@ -177,15 +177,15 @@ export default function BidderPage() {
                                 {/* Player Spotlight Card */}
                                 <Card className={cn(
                                     "border-white/10 bg-white/[0.02] shadow-2xl overflow-hidden relative backdrop-blur-3xl rounded-[2.5rem]",
-                                    isCrisis && "ring-2 ring-[var(--theme-accent)]/50 ring-offset-4 ring-offset-[#05070A] animate-pulse"
+                                    isCrisis && "ring-2 ring-[#FF2E63]/50 ring-offset-4 ring-offset-[#0B0E14] animate-pulse"
                                 )}>
                                     {/* Progress Bar Overlay */}
                                     <div className="absolute top-0 left-0 w-full h-1 bg-white/5">
                                         <div
                                             className={cn(
                                                 "h-full transition-all duration-1000",
-                                                auctionState.timer > 10 ? "bg-[var(--theme-primary)]" :
-                                                    auctionState.timer > 5 ? "bg-[var(--theme-secondary)]" : "bg-[var(--theme-accent)]"
+                                                auctionState.timer > 10 ? "bg-[var(--primary)]" :
+                                                    auctionState.timer > 5 ? "bg-[var(--secondary)]" : "bg-[#FF2E63]"
                                             )}
                                             style={{ width: `${timerPercentage}%` }}
                                         />
@@ -198,11 +198,11 @@ export default function BidderPage() {
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80" />
                                                 <div className="w-56 h-56 rounded-[3rem] bg-white/5 border-2 border-white/10 flex items-center justify-center text-9xl font-black text-white/5 relative group">
                                                     <span className="absolute inset-0 flex items-center justify-center opacity-30 select-none">{currentPlayer.ign[0]}</span>
-                                                    <div className="absolute inset-0 bg-[var(--theme-primary)]/5 opacity-0 group-hover:opacity-100 transition-opacity blur-3xl" />
+                                                    <div className="absolute inset-0 bg-[var(--primary)]/5 opacity-0 group-hover:opacity-100 transition-opacity blur-3xl" />
                                                 </div>
                                                 <div className="absolute bottom-10 left-10 z-20">
                                                     <div className="flex items-center gap-2 mb-3">
-                                                        <Badge className="bg-[var(--theme-primary)]/10 text-[var(--theme-primary)] border border-[var(--theme-primary)]/20 uppercase font-black text-[9px] tracking-[0.2em] px-3 py-1 rounded-lg">
+                                                        <Badge className="bg-[var(--primary)]/10 text-[var(--primary)] border border-[var(--primary)]/20 uppercase font-black text-[9px] tracking-[0.2em] px-3 py-1 rounded-lg">
                                                             {currentPlayer.role} SIGNAL
                                                         </Badge>
                                                     </div>
@@ -216,12 +216,12 @@ export default function BidderPage() {
                                                     <div className="space-y-2">
                                                         <p className="text-[9px] font-black text-white/30 uppercase tracking-[0.4em]">Current Lead Transmission</p>
                                                         <div className="flex items-baseline gap-2">
-                                                            <span className="text-2xl font-black text-[var(--theme-secondary)] italic">₹</span>
+                                                            <span className="text-2xl font-black text-[var(--secondary)] italic">₹</span>
                                                             <DigitalScramble value={auctionState.currentBid} className="text-7xl font-black text-white tracking-tighter italic" />
                                                             <span className="text-2xl font-black text-white/20 uppercase italic pb-1">K</span>
                                                         </div>
                                                         <div className="flex items-center gap-2 pt-1">
-                                                            <div className="w-2 h-2 rounded-full bg-[var(--theme-accent)] animate-pulse" />
+                                                            <div className="w-2 h-2 rounded-full bg-[#FF2E63] animate-pulse" />
                                                             <p className="text-[10px] font-black italic text-white/60 uppercase tracking-widest">{leadingTeam?.name || "Establishing Connection..."}</p>
                                                         </div>
                                                     </div>
@@ -262,7 +262,7 @@ export default function BidderPage() {
                                                             <p className="text-[8px] font-black text-white/20 uppercase tracking-[0.4em] mb-1">Impact Lock</p>
                                                             <p className={cn(
                                                                 "text-3xl font-black tabular-nums italic tracking-tighter",
-                                                                isCrisis ? "text-[var(--theme-accent)] animate-pulse" : "text-white"
+                                                                isCrisis ? "text-[#FF2E63] animate-pulse drop-shadow-[0_0_10px_rgba(255,46,99,0.8)]" : "text-white"
                                                             )}>{auctionState.timer}S</p>
                                                         </div>
                                                     </div>
@@ -276,13 +276,13 @@ export default function BidderPage() {
                                                         >
                                                             <div className={cn(
                                                                 "absolute inset-0 transition-colors duration-500",
-                                                                isCrisis ? "bg-[var(--theme-accent)]" : "bg-white/10 group-hover:bg-white/15"
+                                                                isCrisis ? "bg-[#FF2E63]" : "bg-white/10 group-hover:bg-white/15"
                                                             )} />
                                                             <div className="absolute bottom-0 left-0 h-1 bg-white opacity-20" style={{ width: `${timerPercentage}%` }} />
 
                                                             <span className={cn(
                                                                 "relative flex items-center justify-center gap-6 z-10 transition-transform group-hover:scale-[1.05]",
-                                                                isCrisis ? "text-white" : "text-[var(--theme-accent)]"
+                                                                isCrisis ? "text-white" : "text-[#FF2E63]"
                                                             )}>
                                                                 <Zap className="w-10 h-10 fill-current" />
                                                                 DEPLOY BID ₹{nextBidAmount}K
@@ -297,9 +297,9 @@ export default function BidderPage() {
 
                                 {/* Hammer Warning Overlay for extreme urgency */}
                                 {isCrisis && (
-                                    <div className="bg-[var(--theme-accent)]/10 border border-[var(--theme-accent)]/20 p-6 rounded-[2rem] flex items-center justify-center gap-6 animate-bounce shadow-[0_10px_40px_-10px_rgba(255,46,99,0.3)]">
-                                        <AlertTriangle className="w-6 h-6 text-[var(--theme-accent)]" />
-                                        <span className="text-sm font-black uppercase tracking-[0.6em] text-[var(--theme-accent)] italic">Impact Imminent: {auctionState.timer}s Remaining</span>
+                                    <div className="bg-[#FF2E63]/10 border border-[#FF2E63]/20 p-6 rounded-[2rem] flex items-center justify-center gap-6 animate-bounce shadow-[0_10px_40px_-10px_rgba(255,46,99,0.3)]">
+                                        <AlertTriangle className="w-6 h-6 text-[#FF2E63]" />
+                                        <span className="text-sm font-black uppercase tracking-[0.6em] text-[#FF2E63] italic">Impact Imminent: {auctionState.timer}s Remaining</span>
                                     </div>
                                 )}
 
@@ -309,12 +309,12 @@ export default function BidderPage() {
                                         return (
                                             <Card key={t.id} className={cn(
                                                 "bg-white/[0.03] border-white/10 overflow-hidden backdrop-blur-2xl rounded-3xl transition-all duration-500",
-                                                teamIsLeading && "border-[var(--theme-primary)]/40 bg-[var(--theme-primary)]/[0.05] ring-1 ring-[var(--theme-primary)]/20 shadow-[0_10px_30px_-5px_rgba(0,229,255,0.2)]"
+                                                teamIsLeading && "border-[var(--primary)]/40 bg-[var(--primary)]/[0.05] ring-1 ring-[var(--primary)]/20 shadow-[0_10px_30px_-5px_rgba(0,240,255,0.2)]"
                                             )}>
                                                 <CardHeader className="p-5 space-y-0 pb-3">
                                                     <div className="flex items-center justify-between">
                                                         <CardTitle className="text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-2 italic">
-                                                            <div className={cn("w-1.5 h-1.5 rounded-full", teamIsLeading ? "bg-[var(--theme-primary)] animate-pulse" : "bg-white/10")} />
+                                                            <div className={cn("w-1.5 h-1.5 rounded-full", teamIsLeading ? "bg-[var(--primary)] animate-pulse" : "bg-white/10")} />
                                                             {t.name}
                                                         </CardTitle>
                                                         <span className="text-[10px] font-black tabular-nums text-white/40 italic">₹{(t.budget - t.spent).toLocaleString()}</span>
@@ -328,7 +328,7 @@ export default function BidderPage() {
                                                                 className={cn(
                                                                     "h-1.5 flex-1 rounded-full border border-white/5",
                                                                     i < t.roster.length
-                                                                        ? "bg-[var(--theme-primary)] shadow-[0_0_8px_rgba(0,229,255,0.4)]"
+                                                                        ? "bg-[var(--primary)] shadow-[0_0_8px_rgba(0,240,255,0.4)]"
                                                                         : "bg-white/5"
                                                                 )}
                                                             />
@@ -336,7 +336,7 @@ export default function BidderPage() {
                                                     </div>
                                                     <div className="mt-3 flex justify-between items-center">
                                                         <p className="text-[8px] font-black text-white/20 uppercase tracking-[0.4em]">Roster</p>
-                                                        <p className="text-[10px] font-black italic uppercase text-[var(--theme-primary)] opacity-60 tracking-tighter">{t.roster.length} / {tournament.rules.maxPlayers}</p>
+                                                        <p className="text-[10px] font-black italic uppercase text-[var(--primary)] opacity-60 tracking-tighter">{t.roster.length} / {tournament.rules.maxPlayers}</p>
                                                     </div>
                                                 </CardContent>
                                             </Card>
@@ -345,9 +345,9 @@ export default function BidderPage() {
                                 </div>
                             </div>
                         ) : (
-                            <Card className="h-[400px] flex items-center justify-center border-dashed border-2 py-20 bg-card/20 border-border">
+                            <Card className="h-[400px] flex items-center justify-center border-dashed border-2 py-20 bg-white/5 border-white/20">
                                 <div className="text-center space-y-6 opacity-40">
-                                    <div className="w-24 h-24 rounded-full bg-muted mx-auto flex items-center justify-center">
+                                    <div className="w-24 h-24 rounded-full bg-white/5 mx-auto flex items-center justify-center">
                                         <Gavel className="w-12 h-12" />
                                     </div>
                                     <div>
@@ -361,10 +361,10 @@ export default function BidderPage() {
 
                     {/* Sidebar: My Roster & History */}
                     <div className="lg:col-span-4 space-y-6">
-                        <Card className="bg-white/[0.02] border-white/10 shadow-2xl overflow-hidden backdrop-blur-3xl rounded-[2rem] border-l-2 border-l-[var(--theme-primary)]/20">
+                        <Card className="bg-white/[0.02] border-white/10 shadow-2xl overflow-hidden backdrop-blur-3xl rounded-[2rem] border-l-2 border-l-[var(--primary)]/20">
                             <CardHeader className="py-6 bg-white/5 border-b border-white/10">
                                 <CardTitle className="text-[10px] font-black uppercase tracking-[0.4em] flex items-center gap-3 italic">
-                                    <History className="w-4 h-4 text-[var(--theme-primary)]" />
+                                    <History className="w-4 h-4 text-[var(--primary)]" />
                                     Transmission Feed
                                 </CardTitle>
                             </CardHeader>
@@ -378,13 +378,13 @@ export default function BidderPage() {
                                                 return (
                                                     <div key={bid.id} className={cn(
                                                         "p-6 flex items-center justify-between group transition-all duration-300",
-                                                        i === 0 ? "bg-[var(--theme-primary)]/[0.05]" : "hover:bg-white/5"
+                                                        i === 0 ? "bg-[var(--primary)]/[0.05]" : "hover:bg-white/5"
                                                     )}>
                                                         <div className="flex items-center gap-5">
                                                             <div className={cn(
                                                                 "w-10 h-10 rounded-xl flex items-center justify-center text-[11px] font-black italic border transition-all",
                                                                 bid.teamId === selectedTeamId
-                                                                    ? "bg-[var(--theme-primary)] text-black border-[var(--theme-primary)]/50"
+                                                                    ? "bg-[var(--primary)] text-[#0B0E14] border-[var(--primary)]/50"
                                                                     : "bg-white/5 text-white/40 border-white/10"
                                                             )}>
                                                                 {team?.name[0]}
@@ -395,7 +395,7 @@ export default function BidderPage() {
                                                             </div>
                                                         </div>
                                                         <div className="text-right">
-                                                            <p className="text-sm font-black italic text-[var(--theme-primary)] tracking-tighter">₹{bid.amount}K</p>
+                                                            <p className="text-sm font-black italic text-[var(--primary)] tracking-tighter">₹{bid.amount}K</p>
                                                             <p className="text-[8px] font-black text-white/10 uppercase tracking-[0.2em] mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                                                 {new Date(bid.timestamp).toLocaleTimeString([], { hour12: false, minute: '2-digit', second: '2-digit' })}
                                                             </p>
@@ -407,7 +407,7 @@ export default function BidderPage() {
                                     ) : (
                                         <div className="p-24 text-center space-y-4">
                                             <div className="inline-block p-4 rounded-full bg-white/5 border border-white/10">
-                                                <History className="w-8 h-8 opacity-20 text-[var(--theme-primary)]" />
+                                                <History className="w-8 h-8 opacity-20 text-[var(--primary)]" />
                                             </div>
                                             <p className="text-[9px] text-white/20 font-black uppercase tracking-[0.4em]">Standby for signal...</p>
                                         </div>

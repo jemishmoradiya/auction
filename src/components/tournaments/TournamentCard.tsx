@@ -17,89 +17,87 @@ export function TournamentCard({ tournament }: TournamentCardProps) {
     const { activeTournamentId, setActiveTournament } = useAuctionStore();
     const isActive = activeTournamentId === tournament.id;
 
-    const statusColors = {
-        DRAFT: "bg-slate-500/10 text-slate-400 border-slate-500/20",
-        SETUP: "bg-[var(--theme-primary)]/10 text-[var(--theme-primary)] border-[var(--theme-primary)]/20",
-        LIVE: "bg-[var(--theme-accent)]/10 text-[var(--theme-accent)] border-[var(--theme-accent)]/40 animate-pulse",
-        COMPLETED: "bg-[var(--theme-secondary)]/10 text-[var(--theme-secondary)] border-[var(--theme-secondary)]/20",
+    const statusColors: Record<string, string> = {
+        DRAFT: "bg-white/10 text-slate-300 border-white/20",
+        SETUP: "bg-[var(--secondary)]/10 text-[var(--secondary)] border-[var(--secondary)]/30 shadow-[0_0_10px_rgba(176,38,255,0.2)]",
+        LIVE: "bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/30 animate-pulse shadow-[0_0_10px_rgba(0,240,255,0.3)]",
+        COMPLETED: "bg-white/5 text-slate-400 border-white/10",
     };
 
     return (
         <Card className={cn(
-            "relative overflow-hidden transition-all duration-700 group border-white/10",
-            isActive ? "bg-[var(--theme-primary)]/[0.03] border-[var(--theme-primary)]/40 ring-1 ring-[var(--theme-primary)]/20 rounded-[2rem]" : "bg-white/[0.03] border-white/5 hover:border-white/20 backdrop-blur-3xl rounded-[2rem]"
+            "relative transition-all duration-500 group border rounded-[2rem] p-0 flex flex-col justify-between overflow-hidden backdrop-blur-xl",
+            isActive
+                ? "bg-white/[0.05] border-[var(--primary)]/40 shadow-[0_0_30px_rgba(0,240,255,0.15)] -translate-y-2"
+                : "bg-white/[0.02] border-white/10 shadow-xl hover:shadow-[0_0_25px_rgba(255,255,255,0.05)] hover:-translate-y-1 hover:bg-white/[0.03]"
         )}>
-            {/* Background Glow */}
-            <div className={cn(
-                "absolute -right-20 -top-20 w-40 h-40 blur-[100px] transition-all duration-700",
-                isActive ? "bg-primary/20" : "bg-white/5 opacity-0 group-hover:opacity-100"
-            )} />
+            {isActive && <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 to-transparent pointer-events-none" />}
 
-            <CardHeader className="relative flex flex-row items-center justify-between pb-2">
-                <div className="space-y-1">
-                    <CardTitle className="text-2xl font-black uppercase italic tracking-tighter flex items-center gap-3 font-heading leading-none">
-                        <Trophy className={cn("w-6 h-6", isActive ? "text-[var(--theme-primary)]" : "text-white/20")} />
+            <CardHeader className="p-6 pb-4 border-b border-white/10 flex flex-row items-center justify-between relative z-10">
+                <div className="space-y-2">
+                    <CardTitle className="text-2xl md:text-3xl font-black uppercase tracking-tight flex items-center gap-3 font-heading leading-none text-white">
+                        <Trophy className={cn("w-8 h-8", isActive ? "text-[var(--primary)] drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]" : "text-slate-400")} />
                         {tournament.name}
                     </CardTitle>
-                    <div className="flex items-center gap-2 text-[9px] text-white/20 font-black uppercase tracking-[0.4em] font-heading">
+                    <div className="flex items-center gap-2 text-[10px] text-[var(--primary)] font-bold uppercase tracking-widest bg-[var(--primary)]/10 border border-[var(--primary)]/30 inline-block px-3 py-1 rounded-full shadow-[0_0_10px_rgba(0,240,255,0.1)]">
                         <span>{tournament.game} Transmission</span>
                     </div>
                 </div>
-                <Badge variant="outline" className={cn("text-[10px] font-black tracking-widest", statusColors[tournament.status])}>
+                <Badge variant="outline" className={cn("text-[10px] font-bold tracking-widest px-3 py-1 rounded-full border", statusColors[tournament.status] || "bg-white/5 text-white border-white/20")}>
                     {tournament.status}
                 </Badge>
             </CardHeader>
 
-            <CardContent className="relative space-y-6 py-4">
+            <CardContent className="p-6 space-y-6 relative z-10">
                 <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                        <p className="text-[9px] uppercase font-black tracking-[0.3em] text-white/20 font-heading">Accumulated Pool</p>
-                        <p className="text-2xl font-black font-mono text-white flex items-center gap-1 italic tracking-tighter">
-                            <IndianRupee className="w-4 h-4 text-[var(--theme-primary)]" />
+                    <div className="space-y-1.5">
+                        <p className="text-[10px] uppercase font-bold tracking-widest text-slate-400">Accumulated Pool</p>
+                        <p className="text-2xl md:text-3xl font-black text-white flex items-center gap-1 tracking-tighter drop-shadow-sm">
+                            <IndianRupee className="w-5 h-5 text-[var(--secondary)]" />
                             {tournament.prizePool.toLocaleString()}
                         </p>
                     </div>
-                    <div className="space-y-1 text-right">
-                        <p className="text-[10px] uppercase font-black tracking-widest text-white/30 font-heading">Start Date</p>
-                        <p className="text-sm font-bold text-white flex items-center justify-end gap-2">
-                            <Calendar className="w-3 h-3 text-white/40" />
+                    <div className="space-y-1.5 text-right flex flex-col items-end">
+                        <p className="text-[10px] uppercase font-bold tracking-widest text-slate-400">Start Date</p>
+                        <p className="text-sm font-bold text-white flex items-center justify-end gap-2 pr-1">
+                            <Calendar className="w-4 h-4 text-[var(--primary)]" />
                             {new Date(tournament.startDate).toLocaleDateString()}
                         </p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2">
-                    <div className="bg-white/5 border border-white/5 rounded-lg p-2 text-center">
-                        <p className="text-[8px] font-bold uppercase text-white/40 font-heading">Max Players</p>
-                        <p className="text-sm font-black text-white font-mono">{tournament.rules.maxPlayers}</p>
+                <div className="grid grid-cols-3 gap-4">
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-center transition-colors group-hover:bg-white/10">
+                        <p className="text-[10px] font-bold uppercase text-slate-500 tracking-widest mb-1">Max Players</p>
+                        <p className="text-xl font-black text-white">{tournament.rules.maxPlayers}</p>
                     </div>
-                    <div className="bg-white/5 border border-white/5 rounded-lg p-2 text-center">
-                        <p className="text-[8px] font-bold uppercase text-white/40 font-heading">Timer</p>
-                        <p className="text-sm font-black text-white font-mono">{tournament.rules.auctionTimer}s</p>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-center transition-colors group-hover:bg-white/10">
+                        <p className="text-[10px] font-bold uppercase text-slate-500 tracking-widest mb-1">Timer</p>
+                        <p className="text-xl font-black text-white">{tournament.rules.auctionTimer}s</p>
                     </div>
-                    <div className="bg-white/5 border border-white/5 rounded-lg p-2 text-center">
-                        <p className="text-[8px] font-bold uppercase text-white/40 font-heading">Increment</p>
-                        <p className="text-sm font-black text-white font-mono">{tournament.rules.bidIncrement} CR</p>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-center transition-colors group-hover:bg-white/10">
+                        <p className="text-[10px] font-bold uppercase text-slate-500 tracking-widest mb-1">Increment</p>
+                        <p className="text-xl font-black text-white">₹{tournament.rules.bidIncrement}</p>
                     </div>
                 </div>
             </CardContent>
 
-            <CardFooter className="relative pt-2 gap-2">
+            <CardFooter className="p-6 pt-0 gap-4 flex-col sm:flex-row relative z-10">
                 {!isActive ? (
                     <Button
                         onClick={() => setActiveTournament(tournament.id)}
-                        className="w-full bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 font-black uppercase tracking-[0.2em] text-[10px] h-12 rounded-xl"
+                        className="w-full bg-white/[0.03] border border-white/10 text-white hover:bg-white/10 hover:border-white/30 font-bold uppercase tracking-widest text-xs h-14 rounded-xl shadow-lg hover:shadow-xl transition-all"
                     >
                         Establish Uplink
                     </Button>
                 ) : (
                     <>
-                        <Link href={`/auction/${tournament.id}/bid`} className="flex-1">
-                            <Button className="w-full bg-[var(--theme-primary)] text-black hover:bg-[var(--theme-primary)]/90 font-black uppercase tracking-[0.2em] text-[10px] h-12 gap-3 rounded-xl shadow-[0_5px_20px_-5px_rgba(0,229,255,0.4)]">
-                                <Play className="w-3 h-3 fill-current" /> Live Transmission
+                        <Link href={`/app/auction/${tournament.id}/bid`} className="w-full sm:flex-1">
+                            <Button className="w-full bg-[var(--primary)] text-[#0B0E14] hover:bg-[#00F0FF]/90 font-black uppercase tracking-widest text-xs h-14 gap-3 rounded-xl shadow-[0_0_15px_rgba(0,240,255,0.4)] hover:shadow-[0_0_25px_rgba(0,240,255,0.6)] transition-all">
+                                <Play className="w-5 h-5 fill-current" /> Live Transmission
                             </Button>
                         </Link>
-                        <Button variant="outline" className="h-12 w-12 border-white/10 hover:bg-white/5 text-white/40 hover:text-white rounded-xl flex items-center justify-center p-0">
+                        <Button variant="outline" className="h-14 w-full sm:w-14 border border-white/10 bg-white/[0.03] hover:bg-white/10 hover:border-white/30 text-white rounded-xl flex items-center justify-center p-0 transition-all flex-shrink-0">
                             <Settings2 className="w-5 h-5" />
                         </Button>
                     </>

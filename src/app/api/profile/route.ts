@@ -7,6 +7,9 @@ const updateProfileSchema = z.object({
     name: z.string().min(1, 'Name is required'),
     bio: z.string().optional(),
     gamerTag: z.string().optional(),
+    privacySettings: z.object({
+        mode: z.enum(['off', 'ghost', 'classified'])
+    }).optional(),
 });
 
 // GET /api/profile - Get current user profile
@@ -40,6 +43,10 @@ export async function PUT(req: NextRequest) {
             name: result.data.name,
             bio: result.data.bio,
         };
+
+        if (result.data.privacySettings) {
+            updateData.privacy_settings = result.data.privacySettings;
+        }
 
         if (result.data.gamerTag) {
             updateData.gamer_tag = result.data.gamerTag.toLowerCase().replace(/\s+/g, '_');

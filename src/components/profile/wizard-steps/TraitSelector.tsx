@@ -30,8 +30,8 @@ export function TraitSelector({ selectedTraits, onToggle, onFinish, onBack, load
                         key={tag}
                         onClick={() => onToggle(tag)}
                         className={`px-6 py-3 rounded-2xl border text-[10px] font-extrabold uppercase tracking-widest transition-all ${selectedTraits.includes(tag)
-                                ? 'bg-primary border-primary text-black scale-105'
-                                : 'bg-white/5 border-white/10 text-white/30 hover:border-white/30 hover:text-white'
+                            ? 'bg-primary border-primary text-black scale-105'
+                            : 'bg-white/5 border-white/10 text-white/30 hover:border-white/30 hover:text-white'
                             }`}
                     >
                         {tag}
@@ -46,7 +46,7 @@ export function TraitSelector({ selectedTraits, onToggle, onFinish, onBack, load
                 <Button
                     onClick={onFinish}
                     disabled={loading}
-                    className="bg-white text-black font-black uppercase text-[10px] tracking-[0.2em] h-14 px-12 rounded-2xl shadow-[0_10px_40px_rgba(255,255,255,0.1)] hover:scale-105 transition-all"
+                    className="bg-[var(--primary)] text-[#0B0E14] font-black uppercase text-[10px] tracking-[0.2em] h-14 px-12 rounded-2xl shadow-[0_10px_40px_rgba(0,240,255,0.15)] hover:shadow-[0_10px_40px_rgba(0,240,255,0.3)] hover:bg-[#00F0FF]/90 hover:scale-105 transition-all"
                 >
                     {loading ? "Initializing..." : "Engage Module"}
                 </Button>

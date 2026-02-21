@@ -18,15 +18,15 @@ export interface BroadcastThemeTokens {
 export const BROADCAST_THEMES: Record<BroadcastThemeId, BroadcastThemeTokens> = {
     'cyberpunk': {
         id: 'cyberpunk',
-        name: 'Cyberpunk Neon',
-        primaryAccent: '#ff00ff', // Magenta
-        secondaryAccent: '#00ffff', // Cyan
-        backgroundGradient: 'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)',
-        borderGlow: '0 0 20px rgba(255, 0, 255, 0.5)',
-        highlightColor: '#ffff00',
-        dangerColor: '#ff0000',
-        successColor: '#00ff00',
-        surfaceOpacity: '0.15',
+        name: 'Neon Cyberpunk Glass',
+        primaryAccent: '#00F0FF', // Neon Cyan
+        secondaryAccent: '#B026FF', // Neon Violet
+        backgroundGradient: 'linear-gradient(135deg, #05070A 0%, #0B0E14 100%)',
+        borderGlow: '0 0 20px rgba(0, 240, 255, 0.4)',
+        highlightColor: '#FFFFFF',
+        dangerColor: '#FF2E63', // Neon Pink/Red
+        successColor: '#00F0FF',
+        surfaceOpacity: '0.05',
         fontFamily: 'var(--font-inter)',
         ambientTexture: "url('https://grainy-gradients.vercel.app/noise.svg')"
     },

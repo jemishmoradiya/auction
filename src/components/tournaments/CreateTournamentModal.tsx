@@ -67,12 +67,12 @@ export function CreateTournamentModal({ isOpen, onClose }: CreateTournamentModal
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[600px] bg-[#020617] border-white/10 text-white p-0 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
+            <DialogContent className="sm:max-w-[600px] bg-[var(--background)] border-white/10 text-white p-0 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 via-transparent to-transparent pointer-events-none" />
 
                 <DialogHeader className="p-8 pb-0 relative">
                     <DialogTitle className="text-3xl font-black italic uppercase tracking-tighter flex items-center gap-3 font-heading">
-                        <Trophy className="w-8 h-8 text-primary" />
+                        <Trophy className="w-8 h-8 text-[var(--primary)]" />
                         Create Tournament
                     </DialogTitle>
                     <DialogDescription className="text-white/40 font-bold uppercase tracking-widest text-[10px]">
@@ -91,7 +91,7 @@ export function CreateTournamentModal({ isOpen, onClose }: CreateTournamentModal
                                 required
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                className="bg-white/5 border-white/10 focus:border-primary/50 text-white font-heading italic uppercase tracking-tight"
+                                className="bg-white/5 border-white/10 focus:border-[var(--primary)]/50 text-white font-heading italic uppercase tracking-tight"
                                 placeholder="E.G. CHAMPIONS CUP"
                             />
                         </div>
@@ -104,7 +104,7 @@ export function CreateTournamentModal({ isOpen, onClose }: CreateTournamentModal
                                 required
                                 value={formData.game}
                                 onChange={(e) => setFormData({ ...formData, game: e.target.value })}
-                                className="bg-white/5 border-white/10 focus:border-primary/50 text-white"
+                                className="bg-white/5 border-white/10 focus:border-[var(--primary)]/50 text-white"
                                 placeholder="E.G. CALL OF DUTY: MOBILE"
                             />
                         </div>
@@ -122,7 +122,7 @@ export function CreateTournamentModal({ isOpen, onClose }: CreateTournamentModal
                                     type="number"
                                     value={formData.prizePool}
                                     onChange={(e) => setFormData({ ...formData, prizePool: Number(e.target.value) })}
-                                    className="bg-white/5 border-white/10 focus:border-primary/50 text-white pl-8 font-mono"
+                                    className="bg-white/5 border-white/10 focus:border-[var(--primary)]/50 text-white pl-8 font-mono"
                                 />
                             </div>
                         </div>
@@ -135,7 +135,7 @@ export function CreateTournamentModal({ isOpen, onClose }: CreateTournamentModal
                                 type="date"
                                 value={formData.startDate}
                                 onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                                className="bg-white/5 border-white/10 focus:border-primary/50 text-white font-mono"
+                                className="bg-white/5 border-white/10 focus:border-[var(--primary)]/50 text-white font-mono"
                             />
                         </div>
                         <div className="space-y-2">
@@ -147,13 +147,13 @@ export function CreateTournamentModal({ isOpen, onClose }: CreateTournamentModal
                                 type="date"
                                 value={formData.endDate}
                                 onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                                className="bg-white/5 border-white/10 focus:border-primary/50 text-white font-mono"
+                                className="bg-white/5 border-white/10 focus:border-[var(--primary)]/50 text-white font-mono"
                             />
                         </div>
                     </div>
 
                     <div className="pt-4 space-y-4">
-                        <h4 className="text-[10px] uppercase font-black tracking-[0.3em] text-primary font-heading">Operational Rules</h4>
+                        <h4 className="text-[10px] uppercase font-black tracking-[0.3em] text-[var(--primary)] font-heading">Operational Rules</h4>
                         <div className="grid grid-cols-4 gap-4">
                             <div className="space-y-2">
                                 <Label className="text-[8px] uppercase font-bold text-white/30">Min Squad</Label>
@@ -198,7 +198,7 @@ export function CreateTournamentModal({ isOpen, onClose }: CreateTournamentModal
                         <Button type="button" variant="ghost" onClick={onClose} className="text-white/40 hover:text-white hover:bg-white/5 uppercase font-black tracking-widest text-[10px]">
                             Abort Mission
                         </Button>
-                        <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90 font-black uppercase tracking-widest px-8 shadow-lg shadow-primary/20">
+                        <Button type="submit" className="bg-[var(--primary)] text-[#0B0E14] hover:bg-[#00F0FF]/90 font-black uppercase tracking-widest px-8 shadow-[0_0_15px_rgba(0,240,255,0.3)] hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] transition-all">
                             Launch Tournament
                         </Button>
                     </DialogFooter>
